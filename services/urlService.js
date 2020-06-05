@@ -45,6 +45,29 @@ let urlService = {
         message: err
       })
     }
+  },
+  getOriginalUrl: async (req, res, callback) => {
+    try {
+      let record = await Url.findOne({
+        where: {
+          shortUrl: `${HOST}/${req.params.key}`
+        }
+      })
+      if (record) {
+        await record.update({
+          view: record.view += 1
+        })
+        return res.redirect(`${record.originalUrl}`)
+      } else {
+        return res.redirect('/')
+      }
+    }
+    catch (err) {
+      return callback({
+        status: 400,
+        message: err
+      })
+    }
   }
 }
 

@@ -12,6 +12,11 @@ let urlController = {
       console.log(link)
       return res.render('index', { data: data, link: link })
     })
+  },
+  getOriginalUrl: (req, res) => {
+    urlService.getOriginalUrl(req, res, data => {
+      return res.render('index', { data: data })
+    })
   }
 }
 
