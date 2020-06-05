@@ -1,5 +1,17 @@
 version: '3.8'
 services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=database
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=password
+    ports: 
+      - "3306:3306"
+    volumes: 
+      - ./data/mysql:/var/lib/mysql
   web:
     build: 
       context: ./
@@ -9,5 +21,13 @@ services:
       - /app/node_modules
     ports:
       - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: database
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_HOST: db
     tty: true
     stdin_open: true
