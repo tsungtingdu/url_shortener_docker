@@ -16,6 +16,9 @@ app.engine('hbs', exphbs({
 app.set('view engine', 'hbs')
 app.use(methodOverride('_method'))
 
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+
 routes(app)
 
 app.listen(PORT, () => {
