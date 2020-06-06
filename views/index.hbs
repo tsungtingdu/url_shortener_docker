@@ -2,6 +2,7 @@
   <div class="row d-flex justify-content-center ">
     <div class="col-sm-8">
       <br>
+      {{> message}}
       {{#if link}}
       <div class="alert alert-info alert-dismissible fade show" role="alert">
         Here's the short url: <a href="{{{link.shortUrl}}}" target=" _blank" style="color:blue">{{{link.shortUrl}}}</a>
