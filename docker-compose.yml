@@ -19,8 +19,8 @@ services:
     volumes:
       - ./web:/app
       - /app/node_modules
-    ports:
-      - "3000:3000"
+    # ports:
+    #   - "3000:3000"
     depends_on:
       - db
     environment:
@@ -32,3 +32,14 @@ services:
       HOST: http://localhost:3000
     tty: true
     stdin_open: true
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    volumes: 
+      - ./nginx:/etc/nginx/nginx
+    ports: 
+      - '3000:3000'
+    depends_on:
+      - web
