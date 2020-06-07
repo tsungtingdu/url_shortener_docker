@@ -2,20 +2,25 @@
   <div class="row d-flex justify-content-center ">
     <div class="col-sm-8">
       <br>
-      {{> message}}
-      {{#if link}}
-      <div class="alert alert-info alert-dismissible fade show" role="alert">
-        Here's the short url: <a href="{{{link.shortUrl}}}" target=" _blank" style="color:blue">{{{link.shortUrl}}}</a>
+      <div id="messages">
+        {{> message}}
+        {{#if link}}
+        <div class="alert alert-info alert-dismissible fade show" id="result-panel" role="alert">
+          Here's the short url: <a href="{{{link.shortUrl}}}" target=" _blank"
+            style="color:blue">{{{link.shortUrl}}}</a>
+        </div>
+        {{/if}}
       </div>
-      {{/if}}
       <br>
       <form action="/" method="POST">
-        <div class="form-group">
+        <div class="form-group" id="url-form">
           <input type="text" class="form-control" name="url" id="url" aria-describedby="urlHelp"
             placeholder="Enter your url here" value="{{link.originalUrl}}" required>
         </div>
         <button type="submit" class="btn btn-primary">create short url</button>
+        <a class="btn btn-info" id='clear-data-btn' style="color:white">clear</a>
       </form>
+
     </div>
   </div>
 </div>
@@ -47,3 +52,16 @@
   </div>
 </div>
 {{/if}}
+{{!-- script --}}
+<script>
+  const clearDataButton = document.querySelector('#clear-data-btn')
+  const messages = document.querySelector('#messages')
+  const urlFrom = document.querySelector('#url-form')
+
+  clearDataButton.addEventListener('click', e => {
+    // clear form value
+    urlFrom.children[0].defaultValue = ''
+    // clear messages
+    messages.innerHTML = ''
+  })
+</script>
