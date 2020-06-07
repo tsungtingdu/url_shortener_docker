@@ -23,7 +23,7 @@ let urlController = {
   },
   getOriginalUrl: (req, res) => {
     urlService.getOriginalUrl(req, res, data => {
-      if (data) {
+      if (data && data.data) {
         return res.redirect(`${data.data.originalUrl}`)
       } else {
         return res.redirect('/')
