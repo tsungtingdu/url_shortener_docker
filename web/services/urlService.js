@@ -1,3 +1,4 @@
+const crypto = require('crypto')
 const db = require('../models')
 const { Url } = db
 const HOST = process.env.HOST
@@ -29,7 +30,7 @@ let urlService = {
         })
       } else {
         // create a new short url
-        let code = Math.random().toString(36).slice(-5)
+        let code = await urlService.encoder(req.body.url)
         let newUrl = await Url.create({
           originalUrl: req.body.url,
           shortUrl: `${HOST}/${code}`,
@@ -89,6 +90,11 @@ let urlService = {
     catch (err) {
       console.log(err)
     }
+  },
+  encoder: async (str) => {
+    // use SHA-256 for creating hash with base64 encoding
+    let hash = crypto.createHash('sha256').update(str).digest('base64')
+    return hash.slice(0, 6)
   }
 }
 
