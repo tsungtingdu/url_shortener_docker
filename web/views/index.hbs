@@ -19,3 +19,30 @@
     </div>
   </div>
 </div>
+<br>
+{{#if userData}}
+<div class="container card">
+  <div class="row d-flex justify-content-center">
+    <table class="table table-borderless table-responsive-xl m-3" style="word-break:break-all; word-wrap:break-all;">
+      <thead>
+        <tr>
+          <th scope="col" style="width:30%">Short URL</th>
+          <th scope="col" style="width:30%">Original</th>
+          <th scope="col" style="width:10%">Views</th>
+          <th scope="col" style="width:30%">Created At</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each userData}}
+        <tr>
+          <td><a href="{{this.shortUrl}}" target="_blank">{{this.shortUrl}}</a></td>
+          <td>{{this.originalUrl}}</td>
+          <td>{{this.view}}</td>
+          <td>{{dataFormat this.createdAt}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+{{/if}}

@@ -3,10 +3,13 @@ const { Url } = db
 const HOST = process.env.HOST
 
 let urlService = {
-  getIndex: (req, res, callback) => {
+  getIndex: async (req, res, callback) => {
+    // get user data
+    userData = await urlService.getUserData(req)
     return callback({
       status: 200,
-      message: 'ok'
+      message: 'ok',
+      userData: userData
     })
   },
   createShortUrl: async (req, res, callback) => {
@@ -15,13 +18,14 @@ let urlService = {
       let record = await Url.findOne({
         where: { originalUrl: req.body.url }
       })
-
       if (record) {
         // return exist shortUrl
+        userData = await urlService.getUserData(req)
         return callback({
           status: 200,
           message: 'Get a previous short url successfully!',
-          data: record.get()
+          data: record.get(),
+          userData: userData
         })
       } else {
         // create a new short url
@@ -32,10 +36,13 @@ let urlService = {
           view: 0,
           userId: req.user ? req.user.id : null
         })
+        // get latest user data
+        userData = await urlService.getUserData(req)
         return callback({
           status: 200,
           message: 'create a new short url successfully',
-          data: newUrl.get()
+          data: newUrl.get(),
+          userData: userData
         })
       }
     }
@@ -65,6 +72,22 @@ let urlService = {
         status: 400,
         message: err
       })
+    }
+  },
+  getUserData: async (req) => {
+    try {
+      if (req.user) {
+        return Url.findAll({
+          raw: true,
+          nest: true,
+          where: { userId: req.user.id },
+          order: [['createdAt', 'DESC']]
+        })
+      }
+      return null
+    }
+    catch (err) {
+      console.log(err)
     }
   }
 }

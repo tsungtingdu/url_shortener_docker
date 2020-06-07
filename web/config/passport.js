@@ -13,8 +13,6 @@ module.exports = app => {
       where: { email: email }
     })
       .then(user => {
-        console.log('in passport')
-        console.log(user)
         if (!user) {
           return done(null, false, { message: 'That email is not registered!' })
         }
@@ -33,11 +31,9 @@ module.exports = app => {
     done(null, user.id)
   })
   passport.deserializeUser((id, done) => {
-    console.log('In deserializeUser')
     User.findOne({
       where: { id: id }
     }).then(user => {
-      console.log(user)
       done(null, user)
     }).catch(err => {
       done(err, null)

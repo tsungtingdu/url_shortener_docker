@@ -15,7 +15,8 @@ const PORT = process.env.PORT || 3000
 // use handlebars
 app.engine('hbs', exphbs({
   defaultLayout: 'main',
-  extname: '.hbs'
+  extname: '.hbs',
+  helpers: require('./config/handlebars-helpers.js')
 }))
 app.set('view engine', 'hbs')
 app.use(methodOverride('_method'))
