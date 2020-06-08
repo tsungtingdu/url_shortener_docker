@@ -2,11 +2,11 @@
 
 This is a url shortener where you can create short form url for your original url.
 
-[Imgur](https://i.imgur.com/A0NECa1.png)
+![Imgur](https://i.imgur.com/A0NECa1.png)
 
-[Imgur](https://i.imgur.com/4xlsGxu.png)
+![Imgur](https://i.imgur.com/4xlsGxu.png)
 
-[Imgur](https://i.imgur.com/qivowLp.png)
+![Imgur](https://i.imgur.com/qivowLp.png)
 
 ### Features
 * User can create short url
