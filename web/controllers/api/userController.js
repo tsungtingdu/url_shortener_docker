@@ -20,7 +20,7 @@ let userController = {
           status: 400,
           message: 'this email has been registered'
         })
-      } else {
+      } else if (req.name && req.email && req.password) {
         const salt = await bcrypt.genSalt(10)
         const hash = await bcrypt.hash(req.body.password, salt)
         let newUser = await User.create({
@@ -46,10 +46,10 @@ let userController = {
   },
   signIn: async (req, res) => {
     try {
-      if (!req.body.name || !req.body.email || !req.body.password) {
+      if (!req.body.email || !req.body.password) {
         return res.status(400).json({
           status: 400,
-          message: "name, email, and password are required"
+          message: "email, and password are required"
         })
       }
       let email = req.body.email
