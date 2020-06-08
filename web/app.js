@@ -8,6 +8,7 @@ const routes = require('./routes/index')
 const passport = require('./config/passport')
 const session = require('express-session')
 const statusMonitor = require('express-status-monitor')
+const swaggerDoc = require('./swagger/swaggerDoc')
 
 // app config
 const PORT = process.env.PORT || 3000
@@ -34,6 +35,9 @@ passport(app)
 
 app.use(flash())
 app.use(statusMonitor())
+
+// api doc
+swaggerDoc(app)
 
 // locals
 app.use((req, res, next) => {
