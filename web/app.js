@@ -5,7 +5,7 @@ const exphbs = require('express-handlebars')
 const flash = require('connect-flash')
 const methodOverride = require('method-override')
 const routes = require('./routes/index')
-const passport = require('./config/passport')
+// const passport = require('./config/passport')
 const session = require('express-session')
 const statusMonitor = require('express-status-monitor')
 const swaggerDoc = require('./swagger/swaggerDoc')
@@ -31,7 +31,10 @@ app.use(session({
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-passport(app)
+// use passport
+const passport = require('./config/passport')
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use(flash())
 app.use(statusMonitor())
