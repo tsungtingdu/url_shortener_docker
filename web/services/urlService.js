@@ -22,7 +22,7 @@ let urlService = {
 
       if (isHost) {
         return callback({
-          status: 200,
+          status: 400,
           message: 'Please do not enter the url from the same domain',
           data: null,
           userData: userData
@@ -126,14 +126,14 @@ let urlService = {
           // if shortUrl record exist
           return callback({
             status: 200,
-            message: 'Get a previous short url successfully!',
+            message: 'Get a original url successfully!',
             data: record.get(),
             userData: userData
           })
         } else {
           //  show reminder
           return callback({
-            status: 200,
+            status: 400,
             message: 'Please do not enter the url from the same domain',
             data: null,
             userData: userData
