@@ -49,6 +49,25 @@ $ docker-compose build
 ```
 $ docker-compose up 
 ```
+
+**Run test**
+
+1. start the server (follow the steps above)
+
+2. open another terminal window and check container id of image ` td_url_shortener_web_1`
+```
+$ docker ps
+```
+
+3. start a bash shell in the running container
+```
+$ docker exec -it CONTAINER_ID /bin/sh
+```
+
+4. run test with npm test command
+```
+$ npm test
+```
 ***
 ### Authors
 [tsungtingdu](https://github.com/tsungtingdu) (Tim)
