@@ -20,7 +20,7 @@ let userController = {
           status: 400,
           message: 'this email has been registered'
         })
-      } else if (req.name && req.email && req.password) {
+      } else if (req.body.name && req.body.email && req.body.password) {
         const salt = await bcrypt.genSalt(10)
         const hash = await bcrypt.hash(req.body.password, salt)
         let newUser = await User.create({
