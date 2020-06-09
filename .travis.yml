@@ -12,12 +12,12 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
-# before_script:
-#   - docker-compose up -d --build
+before_script:
+  - docker-compose build
 
 script:
-  - docker-compose up -d --build
-  - sleep 10
+  - docker-compose up
+  - sleep 5
   - docker-compose exec web npm test
 
 # after_sucess:
