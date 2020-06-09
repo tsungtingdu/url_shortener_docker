@@ -50,7 +50,7 @@ $ docker-compose build
 $ docker-compose up 
 ```
 
-**Run test**
+### Test
 
 1. start the server (follow the steps above)
 
@@ -61,7 +61,7 @@ $ docker ps
 
 3. start a bash shell in the running container
 ```
-$ docker exec -it CONTAINER_ID /bin/sh
+$ docker exec -it CONTAINER_ID /bin/bash
 ```
 
 4. run test with npm test command
