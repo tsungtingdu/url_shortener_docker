@@ -30,6 +30,7 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_HOST: db
       HOST: http://localhost:3000
+      JWT_SECRET: development
     tty: true
     stdin_open: true
   nginx:
