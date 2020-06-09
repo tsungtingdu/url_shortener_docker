@@ -25,8 +25,8 @@ script:
 
 after_sucess:
   - docker-compose down
-#   - docker build -t tsungtingdu/url-shortener-web ./web
-#   - docker build -t tsungtingdu/url-shortener-nginx ./nginx
-#   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-#   - docker push tsungtingdu/url-shortener-web
-#   - docker push tsungtingdu/url-shortener-nginx
+  - docker build -t tsungtingdu/url-shortener-web ./web
+  - docker build -t tsungtingdu/url-shortener-nginx ./nginx
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push tsungtingdu/url-shortener-web
+  - docker push tsungtingdu/url-shortener-nginx
