@@ -19,6 +19,8 @@ services:
     volumes:
       - ./web:/app
       - /app/node_modules
+    links:
+      - db
     depends_on:
       - db
     environment:

@@ -16,7 +16,7 @@ install:
   - docker-compose build
 
 before_script:
-  - docker-compose up -d
+  - docker-compose up &
 
 script:
   - sleep 5
