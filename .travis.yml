@@ -16,13 +16,14 @@ install:
   - docker-compose build
 
 before_script:
-  - docker-compose up
+  - docker-compose up -d
 
 script:
   - sleep 5
   - docker-compose exec web npm test
 
-# after_sucess:
+after_sucess:
+  - docker-compose down
 #   - docker build -t tsungtingdu/url-shortener-web ./web
 #   - docker build -t tsungtingdu/url-shortener-nginx ./nginx
 #   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
