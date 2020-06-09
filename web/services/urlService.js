@@ -1,7 +1,7 @@
 const crypto = require('crypto')
 const db = require('../models')
 const { Url } = db
-const HOST = process.env.HOST
+const HOST = process.env.HOST || 'http://localhost:3000'
 
 let urlService = {
   getIndex: async (req, res, callback) => {

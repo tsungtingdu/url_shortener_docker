@@ -12,15 +12,16 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
-before_script:
-  - docker-compose up -d --build
+# before_script:
+#   - docker-compose up -d --build
 
 script:
-  - docker-compose exec web npm test
+  # - docker-compose exec web npm test
+  - docker-compose up -d --build
 
-after_sucess:
-  - docker build -t tsungtingdu/url-shortener-web ./web
-  - docker build -t tsungtingdu/url-shortener-nginx ./nginx
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push tsungtingdu/url-shortener-web
-  - docker push tsungtingdu/url-shortener-nginx
+# after_sucess:
+#   - docker build -t tsungtingdu/url-shortener-web ./web
+#   - docker build -t tsungtingdu/url-shortener-nginx ./nginx
+#   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+#   - docker push tsungtingdu/url-shortener-web
+#   - docker push tsungtingdu/url-shortener-nginx

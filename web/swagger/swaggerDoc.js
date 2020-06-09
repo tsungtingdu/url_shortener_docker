@@ -6,7 +6,7 @@ const options = {
     info: {
       title: `TD's URL Shortener API Doc`
     },
-    host: process.env.API_SERVER || 'localhost:3000',
+    host: process.env.HOST || 'localhost:3000',
     explorer: true,
     securityDefinitions: {
       bearerAuth: {
