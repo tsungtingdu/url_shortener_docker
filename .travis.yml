@@ -16,10 +16,10 @@ install:
   - docker-compose build
 
 before_script:
-  - docker-compose up &
+  - docker-compose up 
 
 script:
-  - sleep 5
+  - sleep 30
   - docker-compose exec web npm test
 
 after_sucess:
