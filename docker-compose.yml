@@ -29,7 +29,7 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_HOST: db
-      HOST: localhost
+      HOST: http://localhost
       JWT_SECRET: development
     tty: true
     stdin_open: true

@@ -2,7 +2,8 @@ const assert = require('assert')
 const bcrypt = require('bcryptjs')
 const chai = require('chai')
 const fetch = require('node-fetch')
-const HOST = process.env.HOST || 'http://localhost:3000'
+const HOST = process.env.HOST || 'http://localhost'
+const INTERNAL_PORT = 3000
 const db = require('../../../models')
 const { Url, User } = db
 
@@ -10,7 +11,7 @@ describe('# url request', () => {
   context('# Before sign in', () => {
     describe('go the index page', () => {
       it('can NOT get index', (done) => {
-        fetch(`${HOST}/api`)
+        fetch(`${HOST}:${INTERNAL_PORT}/api`)
           .then(res => {
             // should be unauthorized, HTTP code 401
             assert.equal(res.status, 401)
@@ -21,7 +22,7 @@ describe('# url request', () => {
           })
       })
       it('can NOT post the url from HOST domain', (done) => {
-        fetch(`${HOST}/api`, {
+        fetch(`${HOST}:${INTERNAL_PORT}/api`, {
           method: 'POST',
           body: 'url=https://www.npmjs.com/package/node-fetch'
         })
@@ -57,7 +58,7 @@ describe('# url request', () => {
         role: null
       })
       // sign in as test user   
-      await fetch(`${HOST}/api/users/signin`, {
+      await fetch(`${HOST}:${INTERNAL_PORT}/api/users/signin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -72,7 +73,7 @@ describe('# url request', () => {
     })
 
     it('can create new short url', async () => {
-      await fetch(`${HOST}/api`, {
+      await fetch(`${HOST}:${INTERNAL_PORT}/api`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -90,7 +91,7 @@ describe('# url request', () => {
     })
 
     it('can retrieve original short url', async () => {
-      await fetch(`${HOST}/api`, {
+      await fetch(`${HOST}:${INTERNAL_PORT}/api`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -105,7 +106,7 @@ describe('# url request', () => {
     })
 
     it('can NOT create short url of HOST domain', async () => {
-      await fetch(`${HOST}/api`, {
+      await fetch(`${HOST}:${INTERNAL_PORT}/api`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

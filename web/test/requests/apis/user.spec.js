@@ -2,7 +2,8 @@ const assert = require('assert')
 const bcrypt = require('bcryptjs')
 const chai = require('chai')
 const fetch = require('node-fetch')
-const HOST = process.env.HOST || 'http://localhost:3000'
+const HOST = process.env.HOST || 'http://localhost'
+const INTERNAL_PORT = 3000
 const db = require('../../../models')
 const { Url, User } = db
 
@@ -15,7 +16,7 @@ describe('# user request', () => {
   }
   context('# POST /api/users/signup', () => {
     it('get error when put in different password', async () => {
-      await fetch(`${HOST}/api/users/signup`, {
+      await fetch(`${HOST}:${INTERNAL_PORT}/api/users/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -29,7 +30,7 @@ describe('# user request', () => {
       })
     })
     it('get error when missing a field', async () => {
-      await fetch(`${HOST}/api/users/signup`, {
+      await fetch(`${HOST}:${INTERNAL_PORT}/api/users/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -42,7 +43,7 @@ describe('# user request', () => {
       })
     })
     it('sign up successfully', async () => {
-      await fetch(`${HOST}/api/users/signup`, {
+      await fetch(`${HOST}:${INTERNAL_PORT}/api/users/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -58,7 +59,7 @@ describe('# user request', () => {
   })
   context('# POST /api/users/signin', () => {
     it('get error when fill in wrong password', async () => {
-      await fetch(`${HOST}/api/users/signin`, {
+      await fetch(`${HOST}:${INTERNAL_PORT}/api/users/signin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -70,7 +71,7 @@ describe('# user request', () => {
       })
     })
     it('sign in successfully', async () => {
-      await fetch(`${HOST}/api/users/signin`, {
+      await fetch(`${HOST}:${INTERNAL_PORT}/api/users/signin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
