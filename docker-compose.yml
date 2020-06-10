@@ -5,9 +5,11 @@ services:
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=database
+      - MYSQL_DATABASE=td_url_db
       - MYSQL_USER=root
       - MYSQL_PASSWORD=password
+    ports:
+      - '3306:3306'
     volumes: 
       - ./web/data/mysql:/var/lib/mysql
   web:
