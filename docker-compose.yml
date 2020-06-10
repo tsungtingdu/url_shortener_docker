@@ -8,8 +8,6 @@ services:
       - MYSQL_DATABASE=database
       - MYSQL_USER=root
       - MYSQL_PASSWORD=password
-    ports: 
-      - "3306:3306"
     volumes: 
       - ./web/data/mysql:/var/lib/mysql
   web:
