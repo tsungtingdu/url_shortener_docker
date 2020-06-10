@@ -19,8 +19,8 @@ before_script:
   - docker-compose up -d
 
 script:
-  - sleep 45
-  - docker-compose exec web npx sequelize db:migrate
+  # - sleep 45
+  # - docker-compose exec web npx sequelize db:migrate
   - docker-compose exec web npm test
 
 after_sucess:
