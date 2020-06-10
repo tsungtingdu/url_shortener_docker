@@ -29,7 +29,7 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_HOST: db
-      HOST: http://localhost:3000
+      HOST: http://localhost
       JWT_SECRET: development
     tty: true
     stdin_open: true
@@ -41,6 +41,6 @@ services:
     volumes: 
       - ./nginx:/etc/nginx/nginx
     ports: 
-      - '3000:3000'
+      - '80:80'
     depends_on:
       - web
