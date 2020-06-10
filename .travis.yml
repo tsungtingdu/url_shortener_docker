@@ -30,3 +30,16 @@ after_sucess:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push tsungtingdu/url-shortener-web
   - docker push tsungtingdu/url-shortener-nginx
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: ap-southeast-1
+  app: td-url-shortener
+  env: TdUrlShortener-env
+  bucket_name: elasticbeanstalk-ap-southeast-1-516245968608
+  bucket_path: td-url-shortener
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
