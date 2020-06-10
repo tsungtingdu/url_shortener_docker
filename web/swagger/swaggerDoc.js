@@ -1,12 +1,16 @@
 const swaggerUi = require('swagger-ui-express')
 const swaggerJsDoc = require('swagger-jsdoc')
 
+// config host
+let HOST = process.env.HOST || 'localhost:3000'
+HOST = HOST.replace('http://', '')
+
 const options = {
   swaggerDefinition: {
     info: {
       title: `TD's URL Shortener API Doc`
     },
-    host: process.env.HOST || 'localhost:3000',
+    host: HOST,
     explorer: true,
     securityDefinitions: {
       bearerAuth: {
@@ -61,5 +65,5 @@ const swaggerOptions = {
 }
 
 module.exports = app => {
-  app.use('/apiDoc', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions))
+  app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerOptions))
 }
