@@ -1,6 +1,6 @@
 # TD's url shortener
 
-This is a url shortener where you can create short form url for your original url.
+This is a url shortener where you can create short form url for your original url. You can also visit the website [here](http://www.td.coffee/).
 
 ![Imgur](https://i.imgur.com/A0NECa1.png)
 
@@ -19,6 +19,18 @@ This is a url shortener where you can create short form url for your original ur
 * POST /api/users/signin
 * GET /api - retrieve user's urls
 * POST /api - create short url or retreive original url
+
+You can also refer to the api document [here](http://www.td.coffee/api-doc/)
+
+### Stack
+* Node.js
+* Express.js
+* MySQL
+* Nginx (rate limiter)
+* Mocha (testing)
+* Docker (environment)
+* Travis (CI/CD)
+* AWS Elastic Beanstalk (Deployment)
 
 ### Prerequisite
 
