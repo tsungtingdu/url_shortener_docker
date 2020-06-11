@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>TD's Url Shortener</title>
+  <title>TD's Coffee</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- link css files here -->
   {{!-- <link rel="stylesheet" href="/stylesheets/main.css"> --}}
@@ -14,7 +14,8 @@
 <body>
   <header>
     <nav class="navbar navbar-dark bg-primary justify-content-between">
-      <a class="navbar-brand" href="/">TD's Url Shortener</a>
+      <a class="navbar-brand" href="/">TD's Coffee - Url shortener</a>
+      <a href="/next-launch">NEXT LAUNCH</a>
       {{#if user}}
       <a href="/users/logout"><button class="btn btn-dark my-2 my-sm-0">Log out</button></a>
       {{else}}
@@ -25,7 +26,6 @@
   <div class="container mt-3">
     {{{body}}}
   </div>
-
   <!-- include javascript files here -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
