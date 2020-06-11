@@ -4,6 +4,12 @@ const passport = require('passport')
 const urlController = require('../controllers/urlController')
 const userController = require('../controllers/userController')
 
+// other service
+router.get('/next-launch', (req, res) => {
+  return res.render('nextLaunch', { layout: false })
+})
+
+// user services
 router.get('/', urlController.getIndex)
 router.get('/:key', urlController.getOriginalUrl)
 router.post('/', urlController.postIndex)

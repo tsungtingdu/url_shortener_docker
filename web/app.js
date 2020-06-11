@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars')
 const flash = require('connect-flash')
 const methodOverride = require('method-override')
 const routes = require('./routes/index')
+const path = require('path')
 // const passport = require('./config/passport')
 const session = require('express-session')
 const statusMonitor = require('express-status-monitor')
@@ -14,6 +15,7 @@ const swaggerDoc = require('./swagger/swaggerDoc')
 const PORT = process.env.PORT || 3000
 
 // use handlebars
+app.use('/', express.static(path.join(__dirname, 'public')))
 app.engine('hbs', exphbs({
   defaultLayout: 'main',
   extname: '.hbs',
