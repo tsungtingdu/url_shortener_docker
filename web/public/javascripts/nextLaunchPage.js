@@ -20,7 +20,7 @@ axios.get('https://api.spacexdata.com/v3/launches/upcoming')
 
       // countdown
       $(function () {
-        $('#clock-b').countdown(launchTime).on('update.countdown', function (event) {
+        $('#countdownclock').countdown(launchTime).on('update.countdown', function (event) {
           var $this = $(this).html(event.strftime(
             '' + '<div class="holder m-2"><span class="h1 font-weight-bold">%D</span> Day%!d</div>'
             + '<div class="holder m-2"><span class="h1 font-weight-bold">%H</span> Hr</div>'
