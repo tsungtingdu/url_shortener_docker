@@ -5,17 +5,21 @@ let missionName = document.querySelector('#mission-name')
 axios.get('https://api.spacexdata.com/v3/launches/upcoming')
   .then(res => {
 
-    if (res.data[0]) {
+    // ensure always getting upcoming launch if API doesn't update in time
+    let data
+    let nowTime = moment()
+    nowTime = moment.unix(nowTime) / (1000 * 1000)
+    data = (res.data[0].launch_date_unix - nowTime) > 0 ? res.data[0] : res.data[1]
+
+    if (data) {
       // image
-      missionPatch.src = res.data[0].links['mission_patch']
+      missionPatch.src = data.links['mission_patch']
       // details
-      details.innerText = res.data[0].details
+      details.innerText = data.details
       // mission name
-      missionName.innerHTML = `<h3>${res.data[0].mission_name.toUpperCase()}</h3>`
+      missionName.innerHTML = `<h3>${data.mission_name.toUpperCase()}</h3>`
       // launch time
-      let launch_date_utc = res.data[0].launch_date_utc
-      let launchDateOffset = moment.utc(res.data[0].launch_date_utc)
-      launchDateOffset = launchDateOffset.local().format('YYYY-MM-DD HH:mm:ss')
+      let launch_date_utc = data.launch_date_utc
       let launchTime = moment(launch_date_utc).format('YYYY/MM/DD HH:mm:ss')
 
       // countdown
