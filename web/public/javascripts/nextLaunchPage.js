@@ -13,7 +13,7 @@ axios.get('https://api.spacexdata.com/v3/launches/upcoming')
 
     if (data) {
       // image
-      missionPatch.src = data.links['mission_patch']
+      missionPatch.src = data.links['mission_patch'] ? data.links['mission_patch'] : 'https://www.spacex.com/static/images/share.jpg'
       // details
       details.innerText = data.details
       // mission name
