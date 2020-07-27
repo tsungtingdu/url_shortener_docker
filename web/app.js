@@ -1,6 +1,7 @@
 // required packages
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const exphbs = require('express-handlebars')
 const flash = require('connect-flash')
 const methodOverride = require('method-override')
@@ -13,6 +14,9 @@ const swaggerDoc = require('./swagger/swaggerDoc')
 
 // app config
 const PORT = process.env.PORT || 3000
+
+// use cors
+app.use(cors())
 
 // use handlebars
 app.use('/', express.static(path.join(__dirname, 'public')))
